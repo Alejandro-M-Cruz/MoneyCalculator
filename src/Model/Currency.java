@@ -21,9 +21,5 @@ public class Currency {
 
     public String getSymbol() {
         return symbol;
-    }    
-    
-    private void loadCurrency() {
-        
-    } 
+    }        
 }
