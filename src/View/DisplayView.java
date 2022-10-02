@@ -10,11 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.*;
 
 public class DisplayView extends JFrame {
-    CurrencyLoaderFromFile currencyLoader;
+    private CurrencyLoaderFromFile currencyLoader;
+    private ExchangeRateLoaderFromWeb exchangeRateLoader;
+    private DecimalFormat df = new DecimalFormat("0.000000");
     
     JPanel panel;
     JPanel panel2;
@@ -27,9 +30,9 @@ public class DisplayView extends JFrame {
     JLabel fromLabel;
     JLabel toLabel;
     
-    
     public DisplayView() {
         currencyLoader = new CurrencyLoaderFromFile("Currencies.txt");
+        exchangeRateLoader = new ExchangeRateLoaderFromWeb();
     }
     
     public void display() {
@@ -71,7 +74,6 @@ public class DisplayView extends JFrame {
         result.setPreferredSize(convert.getPreferredSize());
         
         fillComboBoxes();
-        
         panel.add(amountLabel);
         panel.add(baseAmount);
         panel.add(fromLabel);
@@ -103,8 +105,7 @@ public class DisplayView extends JFrame {
         double amount = Double.parseDouble(baseAmount.getText());
         Currency base = (Currency) baseCurrency.getSelectedItem();
         Currency destination = (Currency) destinationCurrency.getSelectedItem();
-        ExchangeRateLoaderFromWeb exchangeRateLoader = new ExchangeRateLoaderFromWeb();
         ExchangeRate exchangeRate = exchangeRateLoader.loadExchangeRate(base,destination);
-        result.setText(Double.toString(exchangeRate.getRate()));
+        result.setText(df.format(exchangeRate.getRate()*amount));
     }
 }
