@@ -52,8 +52,8 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
         return currencies;
     }
     
-    private Currency currencyOf(String line) {
-        String[] split = line.split(",");
+    public Currency currencyOf(String line) {
+        String[] split = line.split(", ");
         return new Currency(split[0],split[1],split[2]);
     }
 }

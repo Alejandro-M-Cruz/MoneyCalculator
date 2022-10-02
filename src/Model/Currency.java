@@ -24,6 +24,6 @@ public class Currency {
     }        
     
     public String toString() {
-        return code+","+name+","+symbol;
+        return code+", "+name+", "+symbol;
     }
 }
