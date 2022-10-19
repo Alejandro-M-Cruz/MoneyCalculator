@@ -38,8 +38,6 @@ public class DisplayView extends JFrame {
     public void display() {
         this.setLocation(200, 100);
         this.setTitle("Money Calculator");
-        this.setLayout(new BorderLayout());
-        this.setResizable(false);
         initComponents();
         this.pack();
         this.addWindowListener(new WindowCloseManager());
@@ -71,7 +69,7 @@ public class DisplayView extends JFrame {
         baseAmount.setText("0.00");
         baseAmount.setPreferredSize(convert.getPreferredSize());
         result.setEditable(false);
-        result.setPreferredSize(convert.getPreferredSize());
+        result.setPreferredSize(new Dimension(120,26));
         
         fillComboBoxes();
         panel.add(amountLabel);
@@ -81,10 +79,10 @@ public class DisplayView extends JFrame {
         panel.add(toLabel);
         panel.add(destinationCurrency);
         panel.add(convert);
-        panel2.add(result);
+        panel.add(result);
         
-        this.add(panel, BorderLayout.CENTER);
-        this.add(panel2, BorderLayout.SOUTH);
+        this.setContentPane(panel);
+        
     }
     
     private void fillComboBoxes() {
