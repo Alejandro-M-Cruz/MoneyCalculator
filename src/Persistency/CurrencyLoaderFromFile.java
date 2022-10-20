@@ -16,6 +16,7 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
         this.filename = filename;
     }
     
+    /*
     @Override
     public void saveCurrencies(List<Currency> currencies) {
         FileWriter ofn = null;
@@ -33,6 +34,7 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
             
         } 
     }
+    */
     
     @Override
     public List<Currency> loadCurrencies() {

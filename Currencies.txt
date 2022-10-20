@@ -1,3 +1,8 @@
-JPY, Yen, ¥
 EUR, Euro, €
-USD, Dólar USA, $
+AUD, Australian Dollar, $
+BRL, Brazilian Real, R$
+JPY, Yen, ¥
+MXN, Mexican Peso, $
+RUB, Russian Ruble, ₽
+USD, US Dollar, $
+CNY, Yuan Renminbi, ¥
