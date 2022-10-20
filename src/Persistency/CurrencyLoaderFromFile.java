@@ -15,27 +15,7 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
     public CurrencyLoaderFromFile(String filename) {
         this.filename = filename;
     }
-    
-    /*
-    @Override
-    public void saveCurrencies(List<Currency> currencies) {
-        FileWriter ofn = null;
-        PrintWriter pw = null;
         
-        try {
-            ofn = new FileWriter(filename);
-            pw = new PrintWriter(ofn);
-            for(int i=0; i<currencies.size(); i++) {
-                pw.println(currencies.get(i).toString());            
-            }
-            ofn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            
-        } 
-    }
-    */
-    
     @Override
     public List<Currency> loadCurrencies() {
         ArrayList<Currency> currencies = new ArrayList<Currency>();
@@ -54,7 +34,7 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
         return currencies;
     }
     
-    public Currency currencyOf(String line) {
+    private Currency currencyOf(String line) {
         String[] split = line.split(", ");
         return new Currency(split[0],split[1],split[2]);
     }

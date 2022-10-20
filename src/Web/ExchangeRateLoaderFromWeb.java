@@ -41,7 +41,7 @@ public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
         
     }
     
-    public String createURL(String base, String destination) {
+    private String createURL(String base, String destination) {
         return "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/"+base.toLowerCase()+"/"+destination.toLowerCase()+".json";
     }
 }

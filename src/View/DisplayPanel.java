@@ -102,7 +102,6 @@ public class DisplayPanel extends JPanel implements DisplayView {
     public Money getBaseMoney() {
         try {
             String base = baseAmount.getText().replace(",",".");
-            System.out.println(base);
             return new Money(Double.parseDouble(base), (Currency) baseCurrency.getSelectedItem());
         } catch(Exception e) {}
         return new Money(0.0,null);
