@@ -1,9 +1,11 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MoneyCalculatorView extends JFrame {
@@ -11,7 +13,8 @@ public class MoneyCalculatorView extends JFrame {
         super(title);
         getContentPane().add(panel);
         addWindowListener(new WindowClosedManager());
-        pack();
+        setPreferredSize(new Dimension(970,250));
+        pack(); 
         setLocation(400,400);
         setVisible(true);
     }    

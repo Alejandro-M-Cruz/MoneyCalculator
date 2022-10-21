@@ -7,7 +7,10 @@ import Model.Money;
 import Persistency.CurrencyLoaderFromFile;
 import Web.ExchangeRateLoaderFromWeb;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -17,11 +20,9 @@ import java.util.List;
 import javax.swing.*;
 
 public class DisplayPanel extends JPanel implements DisplayView {
-    private List<Currency> currencies;
+    private final List<Currency> currencies;
     private Controller controller = new Controller(this);
     
-    JPanel panel;
-    JPanel panel2;
     JTextField baseAmount;
     JTextField result;
     JComboBox baseCurrency;
@@ -35,11 +36,11 @@ public class DisplayPanel extends JPanel implements DisplayView {
     public DisplayPanel(List<Currency> currencies) {
         this.currencies = currencies;
         this.controller = new Controller(this);
-              
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 25));
         initComponents();
         this.setVisible(true);
     }
-    
+
     private void initComponents() {
         baseAmount = new JTextField();
         result = new JTextField();
@@ -58,15 +59,16 @@ public class DisplayPanel extends JPanel implements DisplayView {
                 swapCurrencies();
             }
         });
-        
+
         convert.setEnabled(true);
+        convert.setPreferredSize(new Dimension(400, 52));
         convert.addActionListener(controller);
         
         baseAmount.setEditable(true);
-        baseAmount.setText("0.00");
-        baseAmount.setPreferredSize(new Dimension(120,26));
-        result.setPreferredSize(new Dimension(250,26));
+        baseAmount.setPreferredSize(new Dimension(250,26));
+        result.setPreferredSize(new Dimension(600,26));
         result.setEditable(false);
+        result.setHorizontalAlignment(JTextField.CENTER);
         
         fillComboBoxes();
         this.add(amountLabel);
@@ -78,7 +80,6 @@ public class DisplayPanel extends JPanel implements DisplayView {
         this.add(destinationCurrency);
         this.add(convert);
         this.add(result);
-        
     }
     
     private void swapCurrencies() {
@@ -95,7 +96,7 @@ public class DisplayPanel extends JPanel implements DisplayView {
     }
     
     public void refreshResult(Money money) {
-        DecimalFormat df = new DecimalFormat("0.000000");
+        DecimalFormat df = new DecimalFormat("#.######");
         result.setText(money.toString());
     }
     
