@@ -20,7 +20,7 @@ public class Money {
     }
     
     public String toString() {
-        DecimalFormat df = new DecimalFormat("0.000000");
+        DecimalFormat df = new DecimalFormat("#.######");
         return df.format(amount)+" "+currency.getSymbol();
     }
 }

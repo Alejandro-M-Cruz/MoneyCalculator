@@ -9,7 +9,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
-
+    
     public ExchangeRateLoaderFromWeb() {
     }
     

@@ -3,17 +3,17 @@ package Control;
 import Model.Currency;
 import Model.ExchangeRate;
 import Model.Money;
-import View.DisplayPanel;
+import View.DisplayView;
+import Web.ExchangeRateLoader;
 import Web.ExchangeRateLoaderFromWeb;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DecimalFormat;
 
 public class Controller implements ActionListener {
-    DisplayPanel panel;
-    ExchangeRateLoaderFromWeb exchangeRateLoader;
+    DisplayView panel;
+    ExchangeRateLoader exchangeRateLoader;
     
-    public Controller(DisplayPanel panel) {
+    public Controller(DisplayView panel) {
         this.panel = panel;
         this.exchangeRateLoader = new ExchangeRateLoaderFromWeb();
     }

@@ -2,26 +2,17 @@ package View;
 
 import Control.Controller;
 import Model.Currency;
-import Model.ExchangeRate;
 import Model.Money;
-import Persistency.CurrencyLoaderFromFile;
-import Web.ExchangeRateLoaderFromWeb;
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.text.DecimalFormat;
 import java.util.List;
 import javax.swing.*;
 
 public class DisplayPanel extends JPanel implements DisplayView {
     private final List<Currency> currencies;
-    private Controller controller = new Controller(this);
+    private Controller controller;
     
     JTextField baseAmount;
     JTextField result;
@@ -96,7 +87,6 @@ public class DisplayPanel extends JPanel implements DisplayView {
     }
     
     public void refreshResult(Money money) {
-        DecimalFormat df = new DecimalFormat("#.######");
         result.setText(money.toString());
     }
     

@@ -3,8 +3,6 @@ package Persistency;
 import Model.Currency;
 import java.io.BufferedReader;
 import java.util.List;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileReader;
