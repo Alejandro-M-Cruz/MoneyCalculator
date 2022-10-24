@@ -12,8 +12,6 @@ import javax.swing.*;
 
 public class DisplayPanel extends JPanel implements DisplayView {
     private final List<Currency> currencies;
-    private Controller controller;
-    
     JTextField baseAmount;
     JTextField result;
     JComboBox baseCurrency;
@@ -26,7 +24,6 @@ public class DisplayPanel extends JPanel implements DisplayView {
     
     public DisplayPanel(List<Currency> currencies) {
         this.currencies = currencies;
-        this.controller = new Controller(this);
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 25));
         initComponents();
         this.setVisible(true);
@@ -53,7 +50,6 @@ public class DisplayPanel extends JPanel implements DisplayView {
 
         convert.setEnabled(true);
         convert.setPreferredSize(new Dimension(400, 52));
-        convert.addActionListener(controller);
         
         baseAmount.setEditable(true);
         baseAmount.setPreferredSize(new Dimension(250,26));
@@ -84,6 +80,10 @@ public class DisplayPanel extends JPanel implements DisplayView {
             baseCurrency.addItem(currency);
             destinationCurrency.addItem(currency);
         }
+    }
+    
+    public void setController(Controller controller) {
+        convert.addActionListener(controller);
     }
     
     public void refreshResult(Money money) {

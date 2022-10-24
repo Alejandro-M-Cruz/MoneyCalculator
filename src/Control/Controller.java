@@ -5,7 +5,6 @@ import Model.ExchangeRate;
 import Model.Money;
 import View.DisplayView;
 import Web.ExchangeRateLoader;
-import Web.ExchangeRateLoaderFromWeb;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,9 +12,10 @@ public class Controller implements ActionListener {
     DisplayView panel;
     ExchangeRateLoader exchangeRateLoader;
     
-    public Controller(DisplayView panel) {
+    public Controller(DisplayView panel, ExchangeRateLoader exchangeRateLoader) {
         this.panel = panel;
-        this.exchangeRateLoader = new ExchangeRateLoaderFromWeb();
+        this.panel.setController(this);
+        this.exchangeRateLoader = exchangeRateLoader;
     }
     
     @Override 
