@@ -9,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller implements ActionListener {
-    DisplayView panel;
-    ExchangeRateLoader exchangeRateLoader;
+    private DisplayView panel;
+    private ExchangeRateLoader exchangeRateLoader;
     
     public Controller(DisplayView panel, ExchangeRateLoader exchangeRateLoader) {
         this.panel = panel;
