@@ -23,7 +23,7 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
             BufferedReader br = new BufferedReader(new FileReader(f));
             IteratorReader iteratorReader = new IteratorReader(br);
             for(String line : iteratorReader) {
-                currencies.add(currencyOf(line));
+                currencies.add(stringToCurrency(line));
             }
             
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
         return currencies;
     }
     
-    private Currency currencyOf(String line) {
+    private Currency stringToCurrency(String line) {
         String[] split = line.split(", ");
         return new Currency(split[0],split[1],split[2]);
     }
