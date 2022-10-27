@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.*;
 
-public class DisplayPanel extends JPanel implements DisplayView {
+public class DialogPanel extends JPanel implements Dialog {
     private final List<Currency> currencies;
     JTextField baseAmount;
     JTextField result;
@@ -22,7 +22,7 @@ public class DisplayPanel extends JPanel implements DisplayView {
     JLabel fromLabel;
     JLabel toLabel;
     
-    public DisplayPanel(List<Currency> currencies) {
+    public DialogPanel(List<Currency> currencies) {
         this.currencies = currencies;
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 25));
         initComponents();

@@ -4,7 +4,7 @@ import Control.Controller;
 import Model.Currency;
 import Model.Money;
 
-public interface DisplayView {
+public interface Dialog {
     public void setController(Controller controller);
     public void refreshResult(Money money);
     public Money getBaseMoney();

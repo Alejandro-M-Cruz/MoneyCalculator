@@ -3,7 +3,7 @@ package MoneyCalculator;
 import Control.Controller;
 import Model.Currency;
 import Persistency.CurrencyLoaderFromFile;
-import View.DisplayPanel;
+import View.DialogPanel;
 import View.MoneyCalculatorView;
 import Web.ExchangeRateLoaderFromWeb;
 import java.util.List;
@@ -17,7 +17,7 @@ public class MoneyCalculator {
         CurrencyLoaderFromFile currencyLoaderFromFile = new CurrencyLoaderFromFile("Currencies.txt");
         List<Currency> currencies = currencyLoaderFromFile.loadCurrencies();
         
-        DisplayPanel panel = new DisplayPanel(currencies);
+        DialogPanel panel = new DialogPanel(currencies);
         Controller controller = new Controller(panel, new ExchangeRateLoaderFromWeb());
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

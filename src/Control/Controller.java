@@ -3,16 +3,16 @@ package Control;
 import Model.Currency;
 import Model.ExchangeRate;
 import Model.Money;
-import View.DisplayView;
 import Web.ExchangeRateLoader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import View.Dialog;
 
 public class Controller implements ActionListener {
-    private DisplayView panel;
+    private Dialog panel;
     private ExchangeRateLoader exchangeRateLoader;
     
-    public Controller(DisplayView panel, ExchangeRateLoader exchangeRateLoader) {
+    public Controller(Dialog panel, ExchangeRateLoader exchangeRateLoader) {
         this.panel = panel;
         this.panel.setController(this);
         this.exchangeRateLoader = exchangeRateLoader;
