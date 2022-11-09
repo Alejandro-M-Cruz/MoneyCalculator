@@ -1,6 +1,5 @@
 package View;
 
-import Control.Controller;
 import Model.Currency;
 import Model.Money;
 import java.awt.Dimension;
@@ -82,7 +81,7 @@ public class DialogPanel extends JPanel implements Dialog {
         }
     }
     
-    public void setController(Controller controller) {
+    public void setController(ActionListener controller) {
         convert.addActionListener(controller);
     }
     

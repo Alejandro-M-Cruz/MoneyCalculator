@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 
 public class CurrencyLoaderFromFile implements CurrencyLoader{
-    private String filename;
+    private final String filename;
     
     public CurrencyLoaderFromFile(String filename) {
         this.filename = filename;

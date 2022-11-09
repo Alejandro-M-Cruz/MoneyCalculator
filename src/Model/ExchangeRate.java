@@ -1,7 +1,7 @@
 package Model;
 
 public class ExchangeRate {
-    private double rate;
+    private final double rate;
     private final Currency base;
     private final Currency destination;
 
