@@ -1,13 +1,13 @@
 package View;
 
+import Control.Command;
 import Model.Currency;
 import Model.Money;
-import java.awt.event.ActionListener;
 
 public interface Dialog {
-    public void setController(ActionListener controller);
-    public void refreshResult(Money money);
-    public Money getBaseMoney();
-    public Currency getDestinationCurrency();
-    public void displayErrorMessage(String error);
+    void addCommand(Command command);
+    void refreshResult(Money money);
+    Money getBaseMoney();
+    Currency getDestinationCurrency();
+    void displayErrorMessage(String error);
 }

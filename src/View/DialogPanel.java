@@ -1,5 +1,6 @@
 package View;
 
+import Control.Command;
 import Model.Currency;
 import Model.Money;
 import java.awt.Dimension;
@@ -11,6 +12,7 @@ import javax.swing.*;
 
 public class DialogPanel extends JPanel implements Dialog {
     private final List<Currency> currencies;
+    Command convertCommand;
     JTextField baseAmount;
     JTextField result;
     JComboBox baseCurrency;
@@ -49,6 +51,12 @@ public class DialogPanel extends JPanel implements Dialog {
 
         convert.setEnabled(true);
         convert.setPreferredSize(new Dimension(400, 52));
+        convert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                convertCommand.execute();
+            }
+        });
         
         baseAmount.setEditable(true);
         baseAmount.setPreferredSize(new Dimension(250,26));
@@ -81,8 +89,9 @@ public class DialogPanel extends JPanel implements Dialog {
         }
     }
     
-    public void setController(ActionListener controller) {
-        convert.addActionListener(controller);
+    @Override
+    public void addCommand(Command command) {
+        this.convertCommand = command;
     }
     
     public void refreshResult(Money money) {
@@ -104,5 +113,5 @@ public class DialogPanel extends JPanel implements Dialog {
     public Currency getDestinationCurrency() {
         return (Currency) destinationCurrency.getSelectedItem();
     }
-    
+
 }

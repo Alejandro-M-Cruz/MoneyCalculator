@@ -13,6 +13,7 @@ public class MoneyCalculatorView extends JFrame {
         addWindowListener(new WindowClosedManager());
         setPreferredSize(new Dimension(970,250));
         pack(); 
+        setLocationRelativeTo(null);
         setVisible(true);
     }    
 

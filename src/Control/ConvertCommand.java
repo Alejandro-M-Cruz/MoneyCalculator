@@ -8,18 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import View.Dialog;
 
-public class Controller implements ActionListener {
+public class ConvertCommand implements Command {
     private final Dialog panel;
     private final ExchangeRateLoader exchangeRateLoader;
     
-    public Controller(Dialog panel, ExchangeRateLoader exchangeRateLoader) {
+    public ConvertCommand(Dialog panel, ExchangeRateLoader exchangeRateLoader) {
         this.panel = panel;
-        this.panel.setController(this);
+        this.panel.addCommand(this);
         this.exchangeRateLoader = exchangeRateLoader;
     }
     
-    @Override 
-    public void actionPerformed(ActionEvent ae) {
+    @Override
+    public void execute() {
         Money baseMoney = panel.getBaseMoney();
         Currency baseCurrency;
         if ((baseCurrency = baseMoney.getCurrency()) == null) {
