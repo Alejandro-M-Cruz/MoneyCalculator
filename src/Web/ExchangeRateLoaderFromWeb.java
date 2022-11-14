@@ -35,7 +35,6 @@ public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
             return Double.parseDouble(rate);
             
         } catch(Exception e) {
-            e.printStackTrace();
             return 0.0;
         }
         

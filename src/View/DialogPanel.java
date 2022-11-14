@@ -12,7 +12,7 @@ import javax.swing.*;
 
 public class DialogPanel extends JPanel implements Dialog {
     private final List<Currency> currencies;
-    Command convertCommand;
+    private Command convertCommand;
     JTextField baseAmount;
     JTextField result;
     JComboBox baseCurrency;
@@ -94,22 +94,25 @@ public class DialogPanel extends JPanel implements Dialog {
         this.convertCommand = command;
     }
     
-    public void refreshResult(Money money) {
+    @Override
+    public void updateResult(Money money) {
         result.setText(money.toString());
     }
     
+    @Override
     public Money getBaseMoney() {
         try {
-            String base = baseAmount.getText().replace(",",".");
-            return new Money(Double.parseDouble(base), (Currency) baseCurrency.getSelectedItem());
+            return new Money(Double.parseDouble(baseAmount.getText().replace(",",".")), (Currency) baseCurrency.getSelectedItem());
         } catch(Exception e) {}
         return new Money(0.0,null);
     }
     
+    @Override
     public void displayErrorMessage(String error) {
         result.setText(error);
     }
     
+    @Override
     public Currency getDestinationCurrency() {
         return (Currency) destinationCurrency.getSelectedItem();
     }

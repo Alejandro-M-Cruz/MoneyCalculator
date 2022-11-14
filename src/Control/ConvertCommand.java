@@ -4,8 +4,6 @@ import Model.Currency;
 import Model.ExchangeRate;
 import Model.Money;
 import Web.ExchangeRateLoader;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import View.Dialog;
 
 public class ConvertCommand implements Command {
@@ -14,7 +12,6 @@ public class ConvertCommand implements Command {
     
     public ConvertCommand(Dialog panel, ExchangeRateLoader exchangeRateLoader) {
         this.panel = panel;
-        this.panel.addCommand(this);
         this.exchangeRateLoader = exchangeRateLoader;
     }
     
@@ -28,6 +25,6 @@ public class ConvertCommand implements Command {
         }
         Currency destinationCurrency = panel.getDestinationCurrency();
         ExchangeRate exchangeRate = exchangeRateLoader.loadExchangeRate(baseCurrency,destinationCurrency);
-        panel.refreshResult(new Money(exchangeRate.getRate()*baseMoney.getAmount(), destinationCurrency));
+        panel.updateResult(new Money(exchangeRate.getRate()*baseMoney.getAmount(), destinationCurrency));
     }
 }

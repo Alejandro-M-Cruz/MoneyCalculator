@@ -19,6 +19,7 @@ public class Money {
         return currency;
     }
     
+    @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.######");
         return df.format(amount)+" "+currency.getSymbol();

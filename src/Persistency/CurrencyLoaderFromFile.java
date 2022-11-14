@@ -16,18 +16,15 @@ public class CurrencyLoaderFromFile implements CurrencyLoader{
         
     @Override
     public List<Currency> loadCurrencies() {
-        ArrayList<Currency> currencies = new ArrayList<Currency>();
-        
+        ArrayList<Currency> currencies = new ArrayList();
         try {
             File f = new File(this.filename);
             BufferedReader br = new BufferedReader(new FileReader(f));
             IteratorReader iteratorReader = new IteratorReader(br);
-            for(String line : iteratorReader) {
+            for(String line : iteratorReader) 
                 currencies.add(stringToCurrency(line));
-            }
-            
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         } 
         return currencies;
     }

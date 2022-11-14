@@ -23,6 +23,7 @@ public class Currency {
         return symbol;
     }        
     
+    @Override
     public String toString() {
         return code+", "+name+", "+symbol;
     }
