@@ -14,4 +14,12 @@ public class ExchangeRate {
     public double getRate() {
         return rate;
     }
+    
+    public Currency getBaseCurrency() {
+        return base;
+    }
+    
+    public Currency getDestinationCurrency() {
+        return destination;
+    }
 }

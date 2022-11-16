@@ -116,5 +116,4 @@ public class DialogPanel extends JPanel implements Dialog {
     public Currency getDestinationCurrency() {
         return (Currency) destinationCurrency.getSelectedItem();
     }
-
 }
