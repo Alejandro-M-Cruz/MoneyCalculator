@@ -2,9 +2,14 @@ package Web;
 
 import Model.Currency;
 import Model.ExchangeRate;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;  
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import static java.util.stream.Collectors.joining;
 
 public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
     
@@ -13,17 +18,22 @@ public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
     
     @Override
     public ExchangeRate loadExchangeRate(Currency base, Currency destination) {
-        return new ExchangeRate(readFromURL(createURL(base,destination)),base,destination);
+        try {
+            return new ExchangeRate(readFromJson(createURL(base,destination),destination),base,destination);
+        } catch (Exception e) {
+            return null;
+        } 
     }
     
-    private double readFromURL(String url) {
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openConnection().getInputStream()));
-            br.readLine(); br.readLine();
-            return Double.parseDouble(br.readLine().substring(11));
-        } catch(Exception e) {
-            return 0.0;
-        }
+    private double readFromJson(String url_str, Currency destination) throws MalformedURLException, IOException {
+        JsonObject jsonObject = new Gson().fromJson(readFromURL(new URL(url_str)), JsonObject.class);
+        return jsonObject.get(destination.getCode().toLowerCase()).getAsDouble();
+    }
+    
+    private static String readFromURL(URL url) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+            return reader.lines().collect(joining());
+        } 
     }
     
     private String createURL(Currency base, Currency destination) {
