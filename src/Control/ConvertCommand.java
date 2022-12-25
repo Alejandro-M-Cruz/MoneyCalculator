@@ -7,24 +7,24 @@ import Web.ExchangeRateLoader;
 import View.Dialog;
 
 public class ConvertCommand implements Command {
-    private final Dialog panel;
+    private final Dialog dialog;
     private final ExchangeRateLoader exchangeRateLoader;
     
-    public ConvertCommand(Dialog panel, ExchangeRateLoader exchangeRateLoader) {
-        this.panel = panel;
+    public ConvertCommand(Dialog dialog, ExchangeRateLoader exchangeRateLoader) {
+        this.dialog = dialog;
         this.exchangeRateLoader = exchangeRateLoader;
     }
     
     @Override
     public void execute() {
-        Money baseMoney = panel.getBaseMoney();
+        Money baseMoney = dialog.getBaseMoney();
         Currency baseCurrency;
         if ((baseCurrency = baseMoney.getCurrency()) == null) {
-            panel.displayErrorMessage("ERROR: The introduced amount is not valid");
+            dialog.displayErrorMessage("ERROR: The introduced amount is not valid");
             return;
         }
-        Currency destinationCurrency = panel.getDestinationCurrency();
+        Currency destinationCurrency = dialog.getDestinationCurrency();
         ExchangeRate exchangeRate = exchangeRateLoader.loadExchangeRate(baseCurrency,destinationCurrency);
-        panel.updateResult(new Money(exchangeRate.getRate()*baseMoney.getAmount(), destinationCurrency));
+        dialog.updateResult(new Money(exchangeRate.getRate()*baseMoney.getAmount(), destinationCurrency));
     }
 }

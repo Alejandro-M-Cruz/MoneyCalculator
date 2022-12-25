@@ -7,12 +7,14 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.*;
 
 public class DialogPanel extends JPanel implements Dialog {
     private final List<Currency> currencies;
-    private Command convertCommand;
+    private final Map<String,Command> commands;
     JTextField baseAmount;
     JTextField result;
     JComboBox baseCurrency;
@@ -25,6 +27,7 @@ public class DialogPanel extends JPanel implements Dialog {
     
     public DialogPanel(List<Currency> currencies) {
         this.currencies = currencies;
+        this.commands = new HashMap();
         this.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 25));
         initComponents();
         this.setVisible(true);
@@ -35,28 +38,13 @@ public class DialogPanel extends JPanel implements Dialog {
         result = new JTextField();
         baseCurrency = new JComboBox();
         destinationCurrency = new JComboBox();
-        swap = new JButton("Swap curreencies");
-        convert = new JButton("Convert");
         amountLabel = new JLabel("Amount: ");
         fromLabel = new JLabel(" From: ");
         toLabel = new JLabel(" To: ");
         
-        swap.setEnabled(true);
-        swap.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                swapCurrencies();
-            }
-        });
-
-        convert.setEnabled(true);
+        swap = button("swap", "Swap curreencies");
+        convert = button("convert", "Convert");
         convert.setPreferredSize(new Dimension(400, 52));
-        convert.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                convertCommand.execute();
-            }
-        });
         
         baseAmount.setEditable(true);
         baseAmount.setPreferredSize(new Dimension(250,26));
@@ -76,7 +64,20 @@ public class DialogPanel extends JPanel implements Dialog {
         this.add(result);
     }
     
-    private void swapCurrencies() {
+    private JButton button(String name, String label) {
+        JButton button = new JButton(label);
+        button.setEnabled(true);
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                commands.get(name).execute();
+            }
+        });
+        return button;
+    }
+    
+    @Override
+    public void swapCurrencies() {
         Currency base = (Currency) baseCurrency.getSelectedItem();
         baseCurrency.setSelectedItem(destinationCurrency.getSelectedItem());
         destinationCurrency.setSelectedItem(base);
@@ -90,8 +91,8 @@ public class DialogPanel extends JPanel implements Dialog {
     }
     
     @Override
-    public void addCommand(Command command) {
-        this.convertCommand = command;
+    public void addCommand(String name, Command command) {
+        this.commands.put(name, command);
     }
     
     @Override
@@ -103,8 +104,9 @@ public class DialogPanel extends JPanel implements Dialog {
     public Money getBaseMoney() {
         try {
             return new Money(Double.parseDouble(baseAmount.getText().replace(",",".")), (Currency) baseCurrency.getSelectedItem());
-        } catch(Exception e) {}
-        return new Money(0.0,null);
+        } catch(NumberFormatException e) {
+            return new Money(0.0,null);
+        }
     }
     
     @Override

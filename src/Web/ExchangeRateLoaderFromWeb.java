@@ -20,7 +20,7 @@ public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
     public ExchangeRate loadExchangeRate(Currency base, Currency destination) {
         try {
             return new ExchangeRate(readFromJson(createURL(base,destination),destination),base,destination);
-        } catch (Exception e) {
+        } catch (IOException e) {
             return null;
         } 
     }
