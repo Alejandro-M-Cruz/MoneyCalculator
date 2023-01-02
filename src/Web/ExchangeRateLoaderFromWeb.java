@@ -13,8 +13,7 @@ import static java.util.stream.Collectors.joining;
 
 public class ExchangeRateLoaderFromWeb implements ExchangeRateLoader {
     
-    public ExchangeRateLoaderFromWeb() {
-    }
+    public ExchangeRateLoaderFromWeb() {}
     
     @Override
     public ExchangeRate loadExchangeRate(Currency base, Currency destination) {
